@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Categoría</title>
+    <link rel="stylesheet" href="static/styles/inventario.css"> <!-- Asegúrate de que el nombre del archivo CSS sea correcto -->
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Categoría</title>
+    <link rel="stylesheet" href="static/styles/categoria.css"> <!-- Asegúrate de que el nombre del archivo CSS sea correcto -->
+</head>
+<body>
+    <div class="container"> <!-- Contenedor único para todo el contenido -->
+        <h1>Agregar Nueva Categoría</h1>
+        <button class="btn" onclick="window.location.href='/ingredientes'">Regresar</button>
+        
+        <form action="/añadir_categoria" method="POST" style="margin-top: 20px;"> <!-- Añadir un margen superior para separar el formulario del encabezado -->
+            <label for="categoria_ing">Nombre de la Categoría:</label><br>
+            <input type="text" id="categoria_ing" name="categoria_ing" required><br><br>
+            <button class="btn" type="submit">Agregar Categoría</button>
+        </form>
+    </div>
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,157 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-image: url('../img/restaurant.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    height: 100vh; /* Altura completa de la ventana */
+    color: #333;
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.6); /* Fondo negro transparente */
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%; /* Ancho del contenedor */
+    max-width: 600px; /* Ancho máximo */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    color: #fff; /* Color del texto */
+}
+
+/* Estilos para los botones */
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    color: black;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s; /* Transición para animaciones */
+}
+
+/* Estilo para el botón de Editar */
+.btn-edit {
+    background-color: rgba(0, 255, 0, 0.541); /* Verde */
+}
+
+.btn-edit:hover {
+    background-color: #218838; /* Verde más oscuro al pasar el mouse */
+    transform: scale(1.05); /* Aumentar tamaño al pasar el mouse */
+}
+
+/* Estilo para el botón de Eliminar */
+.btn-delete {
+    background-color: rgba(255, 0, 0, 0.541); /* Rojo */
+}
+
+.btn-delete:hover {
+    background-color: #c82333; /* Rojo más oscuro al pasar el mouse */
+    transform: scale(1.05); /* Aumentar tamaño al pasar el mouse */
+}
+
+/* Estilo para el botón de Eliminar en estado de confirmación */
+.btn-delete:active {
+    transform: scale(0.95); /* Reducir tamaño al hacer clic */
+}
+
+/* Estilo para el encabezado */
+h1 {
+    margin-bottom: 20px;
+}
+
+/* Estilos para la tabla */
+table {
+    width: 100%;
+    border-collapse: separate; /* Cambiar a 'separate' para permitir el borde redondeado */
+    border-spacing: 10px; /* Espacio entre las celdas */
+    margin-top: 20px;
+}
+
+
+th, td {
+    padding: 12px; /* Aumentar el padding para hacer las celdas más grandes */
+    text-align: center;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.1); /* Fondo con opacidad */
+    border-radius: 15px; /* Bordes redondeados */
+}
+
+th {
+    background-color: rgba(0, 0, 0, 0.2); /* Fondo del encabezado con más opacidad */
+    color: #ffffff;
+}
+
+tr:nth-child(even) td {
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo para filas pares con opacidad */
+}
+
+tr:nth-child(odd) td {
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo para filas impares con opacidad */
+}
+
+/* Estilos para el modal */
+.modal {
+    display: none; /* Ocultar el modal por defecto */
+    position: fixed; /* Mantener el modal en la misma posición */
+    z-index: 1; /* Asegurarse de que esté por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Altura completa */
+    overflow: auto; /* Habilitar el desplazamiento si es necesario */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro con opacidad */
+}
+
+.modal-content {
+    background: rgba(0, 0, 0, 0.8); /* Fondo negro transparente para el modal */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    color: #fff; /* Color del texto en el modal */
+    width: 400px; /* Ancho del modal (ajusta según tus necesidades) */
+    max-width: 80%; /* Ancho máximo para pantallas pequeñas */
+    height: auto; /* Altura automática para ajustarse al contenido */
+    overflow: auto; /* Permite el desplazamiento si el contenido es demasiado grande */
+    position: absolute; /* Posiciona el contenido en relación al modal */
+    left: 50%; /* Centrar horizontalmente */
+    top: 50%; /* Centrar verticalmente */
+    transform: translate(-50%, -50%); /* Ajustar para centrar el modal */
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+}
+
+.modal-content label {
+    color: #fff; /* Color de las etiquetas en el modal */
+}
+
+.modal-content input, .modal-content select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.modal-content button {
+    background-color: #35424a; /* Color de fondo del botón en el modal */
+    color: #fff; /* Color del texto del botón */
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: #454d55; /* Color de fondo del botón al pasar el mouse */
+}

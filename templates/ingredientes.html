@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario</title>
+    <link rel="stylesheet" href="static/styles/inventario.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Inventario</h1>
+            <button class="btn" onclick="window.location.href='/index'">Regresar</button>
+            <button class="btn" id="addInventoryBtn">Agregar</button>
+        </header>
+        
+        <section>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Categoría</th>
+                        <th>Nombre del Ingrediente</th>
+                        <th>Proveedor</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in inventario %}
+                    <tr>
+                        <td>{{ item[0] }}</td>
+                        <td>{{ item[1] }}</td>
+                        <td>{{ item[2] }}</td>
+                        <td>{{ item[3] }}</td>
+                        <td>
+                            <!-- Botón para editar -->
+                            <button class="btn btn-edit" onclick="openEditModal('{{ item[0] }}', '{{ item[1] }}', '{{ item[2] }}', '{{ item[3] }}')">Editar</button><br>
+                            <!-- Botón para eliminar -->
+                            <form action="/eliminar_item/{{ item[0] }}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-delete" onclick="return confirm('¿Estás seguro de que deseas eliminar este ingrediente?');">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- Modal para agregar ítem al inventario -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Agregar Nuevo Ingrediente</h2>
+            <form id="addInventoryForm" action="/añadir_item" method="POST">
+                <input type="hidden" id="itemId" name="itemId" value="{{ itemId }}" required>
+                
+                <label for="categoryId">Categoría:</label><br>
+                <select id="categoryId" name="categoryId" required>
+                    <option value="" disabled selected>Selecciona una categoría</option>
+                    {% for categoria in categorias %}
+                    <option value="{{ categoria[0] }}">{{ categoria[1] }}</option>
+                    {% endfor %}
+                </select><br><br>
+                
+                <!-- Botón "Agregar nueva categoría" fuera del formulario -->
+                <button type="button" id="addCategoryBtn" onclick="window.location.href='/categoria_ing'">Agregar nueva categoría</button><br><br>
+                
+                <label for="itemName">Nombre del Ingrediente:</label><br>
+                <input type="text" id="itemName" name="itemName" required><br><br>
+                
+                <label for="supplier">Proveedor:</label><br>
+                <input type="text" id="supplier" name="supplier" required><br><br>
+                
+                <button type="submit">Agregar Ingrediente</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para editar ítem del inventario -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <h2>Editar Ingrediente</h2>
+            <form id="editInventoryForm" action="" method="POST">
+                <input type="hidden" id="editItemId" name="itemId" required>
+                
+                <label for="editCategoryId">Categoría:</label><br>
+                <select id="editCategoryId" name="categoryId" required>
+                    <option value="" disabled selected>Selecciona una categoría</option>
+                    {% for categoria in categorias %}
+                    <option value="{{ categoria[0] }}">{{ categoria[1] }}</option>
+                    {% endfor %}
+                </select><br><br>
+                
+                <label for="editItemName">Nombre del Ingrediente:</label><br>
+                <input type="text" id="editItemName" name="itemName" required><br><br>
+                
+                <label for="editSupplier">Proveedor:</label><br>
+                <input type="text" id="editSupplier" name="supplier" required><br><br>
+                
+                <button type="submit">Actualizar Ingrediente</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var modal = document.getElementById("myModal");
+        var editModal = document.getElementById("editModal");
+        var btn = document.getElementById("addInventoryBtn");
+        var span = document.getElementsByClassName("close")[0];
+
+        // Mostrar el modal al hacer clic en el botón "Agregar"
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // Cerrar el modal al hacer clic en el "X"
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Cerrar el modal al hacer clic fuera de él
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+            if (event.target == editModal) {
+                closeEditModal();
+            }
+        }
+
+        function openEditModal(itemId, category, itemName, supplier) {
+            document.getElementById("editItemId").value = itemId;
+            document.getElementById("editCategoryId").value = category;
+            document.getElementById("editItemName").value = itemName;
+            document.getElementById("editSupplier").value = supplier;
+            document.getElementById("editInventoryForm").action = "/editar_item/" + itemId;
+            editModal.style.display = "block";
+        }
+
+        function closeEditModal() {
+            editModal.style.display = "none";
+        }
+    </script>
+</body>
+</html>
